@@ -1,3 +1,5 @@
+
+
 <?php 
 include "includes/header.php";
 include "includes/db.php";
@@ -15,9 +17,21 @@ include "includes/db.php";
             <div class="col-md-8">
 
                 <?php
-                $query = "SELECT * FROM posts";
-                $select_all_posts_query = mysqli_query($connection, $query);
-                while($row = mysqli_fetch_assoc($select_all_posts_query)){
+    if(isset($_POST['submit'])){
+        global $connection;
+        $search = $_POST['search'];
+
+        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";
+        $search_query = mysqli_query($connection, $query);
+        if(!$search_query){
+            die("Your query did not work...." . mysqli_error($connection));
+
+        }
+        $count = mysqli_num_rows($search_query);
+        if($count == 0){
+            echo "<h1>No Results Found</h1>";
+        } else {
+                while($row = mysqli_fetch_assoc($search_query)){
                     $post_title = $row['post_title'];
                     $post_author = $row['post_author'];
                     $post_date = $row['post_date'];
@@ -46,7 +60,16 @@ include "includes/db.php";
 
                     <hr>
                     
-                    <?php }?>
+                    <?php }
+                
+
+        }
+    }
+    ?>
+
+
+
+
                 
 
                 
@@ -57,11 +80,11 @@ include "includes/db.php";
 
             <!-- Blog Sidebar Widgets Column -->
             <?php include "includes/sidebar.php"; ?>
-                    </div>
-                    <!-- /.row -->
-                </div>
 
 
+                <!-- Side Widget Well -->
+
+            </div>
 
         </div>
         <!-- /.row -->
