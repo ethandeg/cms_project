@@ -1,4 +1,12 @@
 <?php
+
+function confirm_connection($result){
+    global $connection;
+    if(!$result){
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+}
+
 function insert_categories(){
     if(isset($_POST['submit'])){
         $cat_title = $_POST['cat_title'];
