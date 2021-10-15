@@ -73,10 +73,6 @@ if(isset($_GET['edit_user'])){
         </select>
     </div>
 
-
-
-
-
     <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" name = "username" value="<?php echo $username;?>">
