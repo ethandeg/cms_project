@@ -36,7 +36,7 @@
             $query .= "WHERE post_id = {$p_id}";
             $updated_post = mysqli_query($connection, $query);
             confirm_connection($updated_post);
-            header("Location: posts.php");
+            header("Location: ./posts.php");
         }
 
 ?>
@@ -68,7 +68,6 @@
         <input type="text" class="form-control" name = "post_author" value='<?php echo $row['post_author'] ;?>'>
     </div>
     <div class="form-group">
-        <label for="status">Post Status</label>
         <select name="post_status" id="post_status">
             <option value="<?php echo $row['post_status']; ?>"><?php echo $row['post_status']; ?></option>
             <?php

@@ -20,7 +20,8 @@
         $query .= "VALUES ('{$post_category_id}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
         $new_post = mysqli_query($connection, $query);
         confirm_connection($new_post);
-
+        $the_post_id = mysqli_insert_id($connection);
+        echo "<p class='alert alert-success'>Post successfully created, good job! <a href='../post.php?p_id={$the_post_id}'>Click here to view post</a></p>";
     }
 
 ?>
@@ -31,7 +32,6 @@
     </div>
 
     <div class="form-group">
-        <label for="post_category">Category</label>
         <select name="post_category" id="post_category">
             <?php 
             $query_cats = "SELECT * FROM categories";
@@ -51,8 +51,11 @@
         <input type="text" class="form-control" name = "post_author">
     </div>
     <div class="form-group">
-        <label for="status">Post Status</label>
-        <input type="text" class="form-control" name = "post_status">
+        <select name="post_status" id="">
+            <option value="draft">Post Status</option>
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="image">Post Image</label>

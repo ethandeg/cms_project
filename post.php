@@ -66,15 +66,21 @@ include "includes/db.php";
                         $comment_author = $_POST['comment_author'];
                         $comment_email = $_POST['comment_email'];
                         $comment_content = $_POST['comment_content'];
-                        $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ({$the_post_id}, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'Unapproved', now())";
-                        $create_comment = mysqli_query($connection, $query);
-                        if(!$create_comment){
-                            die("something went wrong..." . mysqli_error($connection));
+                        if(!empty($comment_author) && !empty($comment_email) && !empty($comment_content)){
+                            $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ({$the_post_id}, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'Unapproved', now())";
+                            $create_comment = mysqli_query($connection, $query);
+                            if(!$create_comment){
+                                die("something went wrong..." . mysqli_error($connection));
+                            }
+    
+    
+                            $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = {$the_post_id}";
+                            $update_comment_count = mysqli_query($connection, $query);
+
+                        } else {
+                            echo "<script>alert('All fields are required to post a comment')</script>";
                         }
 
-
-                        $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = {$the_post_id}";
-                        $update_comment_count = mysqli_query($connection, $query);
                     }
                     
                     ?>

@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -13,12 +14,21 @@
             <ul class="nav navbar-right top-nav">
                 <li><a href="../index.php">Home Site</a></li>
 
+                <?php
+                    if(isset($_SESSION['username'])){
+                        $firstname = $_SESSION['user_firstname'];
+                        $lastname = $_SESSION['user_lastname'];
+                    } else {
+                        $firstname = 'Admin';
+                        $lastname = 'User';
+                    } 
 
+                ?>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $firstname . " " . $lastname; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
 
 
