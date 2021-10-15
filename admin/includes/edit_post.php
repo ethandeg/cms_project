@@ -5,7 +5,6 @@
         $query = "SELECT * FROM posts WHERE post_id = '{$p_id}'";
         $post = mysqli_query($connection, $query);
         $row = mysqli_fetch_assoc($post);
-
         if(isset($_POST['update_post'])){
             $post_title = $_POST['post_title'];
             $post_author = $_POST['post_author'];
@@ -60,6 +59,7 @@
                 echo "<option value='{$cat_id}'>{$cat_title}</option>";
             }
             ?>
+
         </select>
     </div>
 
@@ -69,7 +69,16 @@
     </div>
     <div class="form-group">
         <label for="status">Post Status</label>
-        <input type="text" class="form-control" name = "post_status" value='<?php echo $row['post_status'] ;?>'>
+        <select name="post_status" id="post_status">
+            <option value="<?php echo $row['post_status']; ?>"><?php echo $row['post_status']; ?></option>
+            <?php
+            if($row['post_status'] === 'published'){
+                echo "<option value='draft'>draft</option>";
+            } else {
+                echo "<option value='published'>published</option>";
+            }
+            ?>
+        </select>
     </div>
     <div class="form-group">
         <img width = "100" src="../images/<?php echo $row['post_image']; ?>" alt="">
@@ -82,7 +91,7 @@
     </div>
     <div class="form-group">
         <label for="content">Post Content</label>
-        <textarea class="form-control" name = "post_content" cols="30" rows="10"><?php echo $row['post_content'] ;?></textarea>
+        <textarea id = "summernote" class="form-control" name = "post_content" cols="30" rows="10"><?php echo $row['post_content'] ;?></textarea>
     </div>
 
     <input class = "btn btn-primary" type="submit" value='Submit Post' name = 'update_post'>

@@ -19,6 +19,7 @@
         $query .= "VALUES ('{$username}', '{$user_firstname}', '{$user_lastname}', '{$user_role}', '{$user_email}', '{$user_password}')";
         $new_post = mysqli_query($connection, $query);
         confirm_connection($new_post);
+        echo "User Created: " . "<a href='users.php'>View Users</a>";  
 
     }
 

@@ -164,15 +164,8 @@ $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
 $select_all_subscribers = mysqli_query($connection,$query);
 $subscriber_count = mysqli_num_rows($select_all_subscribers);
 
-
-
    ?>
                
-               
-               
-               
-                   
-
                <div class="row">
                    
                    <script type="text/javascript">
@@ -191,14 +184,11 @@ $subscriber_count = mysqli_num_rows($select_all_subscribers);
    for($i =0;$i < count($element_count); $i++) {
    
        echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
-    
-   
    
    }
                                                            
            ?>
               
-    
        ]);
 
        var options = {

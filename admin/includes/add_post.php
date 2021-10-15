@@ -64,7 +64,7 @@
     </div>
     <div class="form-group">
         <label for="content">Post Content</label>
-        <textarea class="form-control" name = "post_content" cols="30" rows="10"></textarea>
+        <textarea class="form-control" name = "post_content" cols="100" rows="100" id="summernote"></textarea>
     </div>
 
     <input class = "btn btn-primary" type="submit" value='Submit Post' name = 'submit'>
