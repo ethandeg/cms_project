@@ -16,6 +16,9 @@
                 <ul class="nav navbar-nav navbar-right top-nav">
 
                     <li>
+                        <a href="registration.php">Registration</a>
+                    </li>
+                    <li>
                         <a href="admin">ADMIN</a>
                     </li>
 
